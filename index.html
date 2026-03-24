@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LEGO Dimensions — Complete Collection</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bangers&family=Nunito:wght@400;600;700;800;900&family=Oswald:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── LEGO DIMENSIONS PALETTE ──────────────────────────────────── */
+:root {
+  --bg:        #0a0a0a;
+  --bg2:       #111111;
+  --surface:   #1a1a1a;
+  --surface2:  #222222;
+  --surface3:  #2a2a2a;
+  --ld-yellow: #ffd700;
+  --ld-yellow2:#ffec4f;
+  --ld-red:    #e3000b;
+  --ld-blue:   #006cb7;
+  --ld-cyan:   #00b4d8;
+  --ld-green:  #00a651;
+  --ld-purple: #7b2d8b;
+  --ld-orange: #f47920;
+  --ld-white:  #f5f5f0;
+  --ld-muted:  #555555;
+  --ld-muted2: #888888;
+  --ld-border: rgba(255,215,0,0.12);
+  --ld-border2:rgba(255,215,0,0.30);
+  --ld-glow:   rgba(255,215,0,0.08);
+  --radius:    8px;
+  --card-w:    172px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+
+body {
+  background: var(--bg);
+  color: var(--ld-white);
+  font-family: 'Nunito', sans-serif;
+  min-height: 100vh;
+  padding-bottom: 80px;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+}
+
+/* ── STUD PATTERN BACKGROUND ──────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(255,215,0,0.04) 3px, transparent 3px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── HEADER ───────────────────────────────────────────────────── */
+header {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+  overflow: hidden;
+  border-bottom: 3px solid var(--ld-yellow);
+  box-shadow: 0 4px 40px rgba(255,215,0,0.15);
+}
+
+.header-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #050505 0%, #111111 40%, #0d0d0d 100%);
+  z-index: 0;
+}
+.header-bg::before {
+  content: '';
+  position: absolute;
+  top: -80px; left: 50%;
+  transform: translateX(-50%);
+  width: 700px; height: 400px;
+  background: radial-gradient(ellipse, rgba(255,215,0,0.12) 0%, transparent 65%);
+}
+/* LEGO brick stud row at bottom of header */
+.header-bg::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 4px;
+  background: repeating-linear-gradient(90deg,
+    var(--ld-yellow) 0px, var(--ld-yellow) 22px,
+    var(--ld-red)    22px, var(--ld-red)    44px,
+    var(--ld-blue)   44px, var(--ld-blue)   66px,
+    var(--ld-green)  66px, var(--ld-green)  88px,
+    var(--ld-purple) 88px, var(--ld-purple) 110px
+  );
+}
+
+/* Portal rings animated */
+.portal-wrap {
+  position: absolute;
+  left: 50%; top: -80px;
+  transform: translateX(-50%);
+  width: 440px; height: 440px;
+  pointer-events: none;
+  opacity: .045;
+  z-index: 0;
+}
+.portal-wrap div {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  animation: pspin 18s linear infinite;
+}
+.portal-wrap div:nth-child(1){border:3px solid var(--ld-yellow);}
+.portal-wrap div:nth-child(2){inset:28px;border:2px solid var(--ld-cyan);animation-duration:12s;animation-direction:reverse;}
+.portal-wrap div:nth-child(3){inset:56px;border:1.5px solid var(--ld-red);animation-duration:28s;}
+.portal-wrap div:nth-child(4){inset:84px;border:1px solid var(--ld-green);animation-duration:22s;animation-direction:reverse;}
+@keyframes pspin{to{transform:rotate(360deg)}}
+
+/* LEGO Dimensions Logo mark (brick portal) */
+.ld-logo {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin: 0 auto;
+  padding-top: 38px;
+  width: 90px; height: 90px;
+  filter: drop-shadow(0 0 24px rgba(255,215,0,0.55));
+}
+
+.header-content {
+  position: relative;
+  z-index: 1;
+  padding: 6px 24px 36px;
+}
+
+.ld-eyebrow {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 9px;
+  text-transform: uppercase;
+  color: var(--ld-yellow);
+  margin-bottom: 6px;
+  text-shadow: 0 0 18px rgba(255,215,0,0.5);
+}
+
+h1 {
+  font-family: 'Bangers', cursive;
+  font-size: clamp(4.5rem, 13vw, 9rem);
+  letter-spacing: 10px;
+  line-height: .85;
+  color: var(--ld-white);
+  text-shadow: 4px 4px 0 #000, 0 0 60px rgba(255,215,0,0.25);
+}
+h1 span.y {
+  color: var(--ld-yellow);
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.8), 0 0 40px rgba(255,215,0,0.4);
+}
+h1 span.d {
+  color: var(--ld-cyan);
+  text-shadow: 4px 4px 0 rgba(0,0,0,0.8), 0 0 40px rgba(0,180,216,0.35);
+}
+
+.ld-tagline {
+  font-family: 'Oswald', sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ld-muted2);
+  margin-top: 8px;
+}
+.ld-tagline strong { color: var(--ld-yellow); }
+
+/* ── STATS BAR ────────────────────────────────────────────────── */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 22px auto 0;
+  max-width: 540px;
+  border: 2px solid var(--ld-border2);
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(10,10,10,0.85);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,215,0,0.06);
+}
+.stat {
+  flex: 1;
+  padding: 13px 12px;
+  text-align: center;
+  border-right: 1px solid var(--ld-border);
+}
+.stat:last-child { border-right: none; }
+.stat-val {
+  font-family: 'Bangers', cursive;
+  font-size: 2rem;
+  letter-spacing: 2px;
+  line-height: 1;
+}
+.sv-y { color: var(--ld-yellow); text-shadow: 0 0 14px rgba(255,215,0,0.4); }
+.sv-w { color: var(--ld-white); }
+.sv-c { color: var(--ld-cyan); text-shadow: 0 0 14px rgba(0,180,216,0.4); }
+.stat-lbl {
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--ld-muted);
+  margin-top: 3px;
+}
+
+/* ── CONTROLS ─────────────────────────────────────────────────── */
+.controls {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 26px auto 0;
+  padding: 0 20px;
+}
+
+.search-wrap { position: relative; margin-bottom: 14px; }
+.sicon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: var(--ld-muted); font-size: 15px; pointer-events: none; }
+
+input[type="text"] {
+  width: 100%;
+  background: var(--surface);
+  border: 1.5px solid rgba(255,215,0,0.18);
+  border-radius: 6px;
+  color: var(--ld-white);
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  padding: 12px 18px 12px 44px;
+  outline: none;
+  transition: border-color .2s, box-shadow .2s;
+}
+input[type="text"]:focus {
+  border-color: var(--ld-yellow);
+  box-shadow: 0 0 0 2px rgba(255,215,0,0.12), 0 0 18px rgba(255,215,0,0.07);
+}
+input[type="text"]::placeholder { color: var(--ld-muted); }
+
+.fgrp { margin-bottom: 10px; }
+.flbl {
+  display: inline-block;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ld-muted);
+  margin-bottom: 7px;
+}
+.frow { display: flex; flex-wrap: wrap; gap: 5px; }
+
+.fbtn {
+  background: rgba(20,20,20,0.9);
+  border: 1.5px solid rgba(255,215,0,0.18);
+  border-radius: 4px;
+  color: var(--ld-muted2);
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  transition: all .14s;
+  white-space: nowrap;
+}
+.fbtn:hover { border-color: var(--ld-yellow); color: var(--ld-white); background: rgba(255,215,0,0.06); }
+.fbtn.active { background: var(--ld-yellow); border-color: var(--ld-yellow); color: #000; font-weight: 700; }
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.owned-pill {
+  background: rgba(0,166,81,0.1);
+  border: 1.5px solid rgba(0,166,81,0.35);
+  border-radius: 4px;
+  padding: 5px 13px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--ld-green);
+  font-family: 'Nunito', sans-serif;
+  letter-spacing: .5px;
+}
+.count-pill { font-size: 11px; color: var(--ld-muted2); font-family: 'Oswald', sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+.view-toggle { display: flex; gap: 4px; }
+.view-btn {
+  background: var(--surface);
+  border: 1.5px solid rgba(255,215,0,0.18);
+  border-radius: 4px;
+  color: var(--ld-muted);
+  cursor: pointer;
+  width: 32px; height: 32px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  transition: all .14s;
+}
+.view-btn.active { background: var(--ld-yellow); border-color: var(--ld-yellow); color: #000; }
+
+/* ── SECTION LABEL ────────────────────────────────────────────── */
+.section-label {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 30px auto 14px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.slabel-inner {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border: 1.5px solid rgba(255,215,0,0.16);
+  border-radius: 6px;
+  padding: 6px 16px;
+  white-space: nowrap;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+}
+.sdot { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+.stxt { font-family: 'Bangers', cursive; font-size: 16px; letter-spacing: 3px; text-transform: uppercase; }
+.scnt { font-size: 10px; font-weight: 700; color: var(--ld-muted); letter-spacing: 1px; font-family: 'Oswald', sans-serif; }
+.section-label::before, .section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+}
+.section-label::before { background: linear-gradient(90deg, transparent, rgba(255,215,0,0.15)); }
+.section-label::after  { background: linear-gradient(90deg, rgba(255,215,0,0.15), transparent); }
+
+/* ── GRID ─────────────────────────────────────────────────────── */
+.grid {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(var(--card-w), 1fr));
+  gap: 10px;
+}
+.grid.list-view { grid-template-columns: 1fr; }
+
+/* ── CARD ─────────────────────────────────────────────────────── */
+.card {
+  background: var(--surface);
+  border: 1.5px solid rgba(255,215,0,0.1);
+  border-radius: var(--radius);
+  overflow: hidden;
+  position: relative;
+  transition: transform .2s, box-shadow .2s, border-color .2s;
+  animation: rise .32s ease both;
+}
+@keyframes rise { from { opacity:0; transform:translateY(12px); } to { opacity:1; transform:translateY(0); } }
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--ld-yellow), transparent);
+  opacity: 0;
+  transition: opacity .2s;
+  z-index: 3;
+}
+.card:hover { transform: translateY(-5px); border-color: rgba(255,215,0,0.35); box-shadow: 0 12px 32px rgba(0,0,0,0.55); }
+.card:hover::before { opacity: 1; }
+.card.owned {
+  border-color: rgba(0,166,81,0.45);
+  background: rgba(26,26,26,0.98);
+  box-shadow: 0 0 14px rgba(0,166,81,0.1);
+}
+.card.owned::before { background: linear-gradient(90deg, transparent, var(--ld-green), transparent); opacity: 1; }
+
+.card-img {
+  height: 175px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+.card-img::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(10,10,10,0.7) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+.card-img img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  padding: 8px;
+  transition: transform .33s;
+  position: relative;
+  z-index: 0;
+  filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6));
+}
+.card:hover .card-img img { transform: scale(1.09) translateY(-2px); }
+
+/* placeholder */
+.placeholder {
+  width: 100%; height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 16px;
+  display: none;
+  position: relative;
+  z-index: 1;
+}
+.ph-num {
+  font-family: 'Bangers', cursive;
+  font-size: 2.2rem;
+  letter-spacing: 2px;
+  opacity: .85;
+}
+.ph-name {
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-align: center;
+  opacity: .3;
+  line-height: 1.3;
+}
+
+/* type badge */
+.type-badge {
+  position: absolute;
+  top: 8px; left: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  color: #000;
+  z-index: 4;
+  white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+}
+
+/* wave badge */
+.wave-badge {
+  position: absolute;
+  bottom: 8px; left: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 7px;
+  border-radius: 2px;
+  z-index: 4;
+  white-space: nowrap;
+}
+
+/* owned button */
+.owned-btn {
+  position: absolute;
+  top: 8px; right: 8px;
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255,255,255,0.15);
+  background: rgba(10,10,10,0.72);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 900;
+  color: rgba(255,255,255,0.2);
+  transition: all .14s;
+  user-select: none;
+  z-index: 4;
+  backdrop-filter: blur(6px);
+}
+.owned-btn:hover { border-color: var(--ld-green); color: var(--ld-green); }
+.owned-btn.owned { background: var(--ld-green); border-color: var(--ld-green); color: #000; box-shadow: 0 0 10px rgba(0,166,81,0.4); }
+
+.card-body { padding: 10px 12px 13px; }
+.card-set {
+  font-family: 'Oswald', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--ld-yellow);
+  margin-bottom: 3px;
+  text-transform: uppercase;
+  opacity: .7;
+}
+.card-name {
+  font-family: 'Bangers', cursive;
+  font-size: 17px;
+  letter-spacing: .8px;
+  color: var(--ld-white);
+  line-height: 1.15;
+  margin-bottom: 6px;
+}
+.card-tags { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; }
+.franchise-tag {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.figures-tag {
+  font-size: 10px;
+  color: var(--ld-muted2);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+}
+.figures-tag::before { content: '● '; font-size: 7px; color: var(--ld-muted); }
+
+/* ── LIST VIEW ────────────────────────────────────────────────── */
+.grid.list-view .card { display: flex; flex-direction: row; align-items: center; }
+.grid.list-view .card-img { width: 80px; height: 80px; flex-shrink: 0; border-radius: 0; }
+.grid.list-view .card-img::after { display: none; }
+.grid.list-view .card-img img { padding: 4px; }
+.grid.list-view .card-body { flex: 1; padding: 8px 14px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.grid.list-view .card-name { margin-bottom: 0; font-size: 15px; }
+.grid.list-view .type-badge { top: 5px; left: 5px; font-size: 7px; padding: 2px 6px; }
+.grid.list-view .wave-badge { bottom: 5px; left: 5px; }
+.grid.list-view .owned-btn { top: 5px; right: 5px; }
+
+/* ── EMPTY ────────────────────────────────────────────────────── */
+.empty { grid-column: 1/-1; text-align: center; padding: 80px 20px; color: var(--ld-muted); }
+.empty-icon { font-size: 3rem; margin-bottom: 14px; opacity: .2; }
+.empty p { font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px; }
+
+/* ── SCROLLBAR ────────────────────────────────────────────────── */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(255,215,0,0.2); border-radius: 99px; }
+::-webkit-scrollbar-thumb:hover { background: var(--ld-yellow); }
+
+@media(max-width:480px){ :root{--card-w:148px} h1{font-size:3.8rem} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-bg"></div>
+  <div class="portal-wrap"><div></div><div></div><div></div><div></div></div>
+
+  <!-- LEGO Dimensions Portal Logo (SVG) -->
+  <svg class="ld-logo" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <!-- outer ring -->
+    <circle cx="50" cy="50" r="45" fill="none" stroke="rgba(255,215,0,0.35)" stroke-width="2"/>
+    <!-- portal glow rings -->
+    <circle cx="50" cy="50" r="36" fill="none" stroke="#ffd700" stroke-width="2.5" opacity="0.9"/>
+    <circle cx="50" cy="50" r="26" fill="none" stroke="#00b4d8" stroke-width="2" opacity="0.8"/>
+    <circle cx="50" cy="50" r="16" fill="none" stroke="#ffd700" stroke-width="1.5" opacity="0.7"/>
+    <!-- centre dot -->
+    <circle cx="50" cy="50" r="6" fill="#ffd700" opacity="0.9"/>
+    <!-- LEGO brick stud bumps on outer ring -->
+    <circle cx="50" cy="7"  r="3" fill="#ffd700"/>
+    <circle cx="50" cy="93" r="3" fill="#ffd700"/>
+    <circle cx="7"  cy="50" r="3" fill="#00b4d8"/>
+    <circle cx="93" cy="50" r="3" fill="#00b4d8"/>
+    <!-- cross lines -->
+    <line x1="50" y1="14" x2="50" y2="86" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
+    <line x1="14" y1="50" x2="86" y2="50" stroke="rgba(255,215,0,0.2)" stroke-width="1"/>
+  </svg>
+
+  <div class="header-content">
+    <div class="ld-eyebrow">Toy Pad · Complete Collection Checklist</div>
+    <h1><span class="y">LEGO</span> <span class="d">DIMENSIONS</span></h1>
+    <p class="ld-tagline">Every pack ever released — <strong id="totalCount">…</strong> sets across 9 waves</p>
+    <div class="stats">
+      <div class="stat"><div class="stat-val sv-y" id="statOwned">0</div><div class="stat-lbl">Owned</div></div>
+      <div class="stat"><div class="stat-val sv-w" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
+      <div class="stat"><div class="stat-val sv-c" id="statPct">0%</div><div class="stat-lbl">Complete</div></div>
+      <div class="stat"><div class="stat-val sv-w">9</div><div class="stat-lbl">Waves</div></div>
+    </div>
+  </div>
+</header>
+
+<div class="controls">
+  <div class="search-wrap">
+    <span class="sicon">⌕</span>
+    <input type="text" id="search" placeholder="Search by name, franchise, set number…" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="fgrp"><div class="flbl">Pack Type</div><div class="frow" id="typeFilters"></div></div>
+  <div class="fgrp"><div class="flbl">Wave</div><div class="frow" id="waveFilters"></div></div>
+  <div class="fgrp"><div class="flbl">Franchise</div><div class="frow" id="franchFilters"></div></div>
+  <div class="toolbar">
+    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap">
+      <div class="owned-pill" id="ownedCount">✓ 0 owned</div>
+      <div class="count-pill" id="countPill">Showing 0 items</div>
+    </div>
+    <div class="view-toggle">
+      <button class="view-btn active" id="gridBtn" title="Grid" onclick="setView('grid')">⊞</button>
+      <button class="view-btn" id="listBtn" title="List" onclick="setView('list')">☰</button>
+    </div>
+  </div>
+</div>
+
+<div id="output"></div>
+
+<script>
+/* ================================================================
+   LEGO DIMENSIONS — Complete Pack Catalogue
+   Sources: Brickipedia, LEGO Dimensions wiki, official site
+   71171 (Starter Pack) through Wave 9 content (2015–2017)
+   ================================================================ */
+
+/* Type colour mapping */
+const typeColors = {
+  "Starter Pack": "#ffd700",
+  "Level Pack":   "#e3000b",
+  "Team Pack":    "#006cb7",
+  "Fun Pack":     "#00b4d8"
+};
+
+/* Franchise colour mapping (bg, fg) */
+const franchColors = {
+  "LEGO":               ["#ffd700","#000"],
+  "DC Comics":          ["#1e3a8a","#fff"],
+  "The Lord of the Rings":["#78350f","#fff"],
+  "The LEGO Movie":     ["#f97316","#000"],
+  "The Wizard of Oz":   ["#7c3aed","#fff"],
+  "Back to the Future": ["#dc2626","#fff"],
+  "Scooby-Doo!":        ["#10b981","#000"],
+  "Jurassic World":     ["#16a34a","#fff"],
+  "Doctor Who":         ["#1d4ed8","#fff"],
+  "Ghostbusters":       ["#16a34a","#fff"],
+  "Midway Arcade":      ["#7c3aed","#fff"],
+  "Portal 2":           ["#f97316","#000"],
+  "Ninjago":            ["#dc2626","#fff"],
+  "Chima":              ["#0ea5e9","#000"],
+  "The Simpsons":       ["#ffd700","#000"],
+  "Legends of Chima":   ["#0ea5e9","#000"],
+  "Harry Potter":       ["#7c3aed","#fff"],
+  "Fantastic Beasts":   ["#7c3aed","#fff"],
+  "Adventure Time":     ["#22d3ee","#000"],
+  "Mission: Impossible":["#374151","#fff"],
+  "The A-Team":         ["#dc2626","#fff"],
+  "Gremlins":           ["#16a34a","#fff"],
+  "Sonic the Hedgehog": ["#2563eb","#fff"],
+  "E.T.":               ["#d97706","#000"],
+  "Beetlejuice":        ["#000","#ffd700"],
+  "Teen Titans Go!":    ["#7c3aed","#fff"],
+  "Knight Rider":       ["#111","#ffd700"],
+  "The Goonies":        ["#92400e","#fff"],
+  "Powerpuff Girls":    ["#ec4899","#000"],
+  "Ghostbusters 2016":  ["#16a34a","#fff"],
+  "Excalibur Batman":   ["#1e3a8a","#fff"],
+  "Supergirl":          ["#dc2626","#fff"],
+  "Krusty the Clown":   ["#ffd700","#000"],
+  "A-Team":             ["#dc2626","#fff"],
+  "Hire-a-Hero":        ["#0ea5e9","#000"]
+};
+
+const waveColors = {
+  "Wave 1":"#ffd700","Wave 2":"#f97316","Wave 3":"#22c55e",
+  "Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899",
+  "Wave 7":"#06b6d4","Wave 8":"#f59e0b","Wave 9":"#ef4444"
+};
+
+const packs = [
+/* ── STARTER PACKS ─────────────────────────────────────────── */
+{num:"71171",name:"LEGO Dimensions Starter Pack (PlayStation 4)",       type:"Starter Pack",franchise:"LEGO",           wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle",img:"imgs/71171-starter-ps4.jpg"},
+{num:"71172",name:"LEGO Dimensions Starter Pack (PlayStation 3)",       type:"Starter Pack",franchise:"LEGO",           wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle",img:"imgs/71172-starter-ps3.jpg"},
+{num:"71173",name:"LEGO Dimensions Starter Pack (Xbox One)",            type:"Starter Pack",franchise:"LEGO",           wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle",img:"imgs/71173-starter-xone.jpg"},
+{num:"71174",name:"LEGO Dimensions Starter Pack (Xbox 360)",            type:"Starter Pack",franchise:"LEGO",           wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle",img:"imgs/71174-starter-x360.jpg"},
+{num:"71175",name:"LEGO Dimensions Starter Pack (Wii U)",               type:"Starter Pack",franchise:"LEGO",           wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle",img:"imgs/71175-starter-wiiu.jpg"},
+
+/* ── WAVE 1 — LEVEL PACKS ──────────────────────────────────── */
+{num:"71201",name:"Back to the Future Level Pack",                       type:"Level Pack",  franchise:"Back to the Future", wave:"Wave 1",figures:"Marty McFly",img:"imgs/71201-bttf-level.jpg"},
+{num:"71202",name:"The Simpsons Level Pack",                             type:"Level Pack",  franchise:"The Simpsons",       wave:"Wave 1",figures:"Homer Simpson",img:"imgs/71202-simpsons-level.jpg"},
+{num:"71203",name:"Portal 2 Level Pack",                                 type:"Level Pack",  franchise:"Portal 2",           wave:"Wave 1",figures:"Chell",img:"imgs/71203-portal-level.jpg"},
+
+/* ── WAVE 1 — TEAM PACKS ───────────────────────────────────── */
+{num:"71204",name:"Doctor Who Team Pack",                                type:"Team Pack",   franchise:"Doctor Who",         wave:"Wave 1",figures:"The Doctor, Cyberman",img:"imgs/71204-doctorwho-team.jpg"},
+{num:"71205",name:"Jurassic World Team Pack",                            type:"Team Pack",   franchise:"Jurassic World",     wave:"Wave 1",figures:"Owen, ACU Trooper",img:"imgs/71205-jurassicworld-team.jpg"},
+{num:"71206",name:"Scooby-Doo! Team Pack",                               type:"Team Pack",   franchise:"Scooby-Doo!",        wave:"Wave 1",figures:"Scooby-Doo, Shaggy",img:"imgs/71206-scooby-team.jpg"},
+{num:"71207",name:"Ninjago Team Pack",                                   type:"Team Pack",   franchise:"Ninjago",            wave:"Wave 1",figures:"Kai, Cole",img:"imgs/71207-ninjago-team.jpg"},
+{num:"71208",name:"DC Comics Team Pack",                                 type:"Team Pack",   franchise:"DC Comics",          wave:"Wave 1",figures:"The Flash, Aquaman",img:"imgs/71208-dc-team.jpg"},
+{num:"71209",name:"The Lord of the Rings Team Pack",                     type:"Team Pack",   franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Legolas, Gimli",img:"imgs/71209-lotr-team.jpg"},
+
+/* ── WAVE 1 — FUN PACKS ────────────────────────────────────── */
+{num:"71210",name:"DC Comics Fun Pack — Cyborg",                         type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Cyborg",img:"imgs/71210-dc-cyborg.jpg"},
+{num:"71211",name:"Back to the Future Fun Pack — Doc Brown",             type:"Fun Pack",    franchise:"Back to the Future", wave:"Wave 1",figures:"Doc Brown",img:"imgs/71211-bttf-docbrown.jpg"},
+{num:"71212",name:"The LEGO Movie Fun Pack — Emmet",                     type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Emmet",img:"imgs/71212-legomovie-emmet.jpg"},
+{num:"71213",name:"The LEGO Movie Fun Pack — Bad Cop",                   type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Bad Cop",img:"imgs/71213-legomovie-badcop.jpg"},
+{num:"71214",name:"The Simpsons Fun Pack — Homer Simpson",               type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 1",figures:"Homer Simpson",img:"imgs/71214-simpsons-homer.jpg"},
+{num:"71215",name:"Ninjago Fun Pack — Jay",                              type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Jay",img:"imgs/71215-ninjago-jay.jpg"},
+{num:"71216",name:"Ninjago Fun Pack — Nya",                              type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Nya",img:"imgs/71216-ninjago-nya.jpg"},
+{num:"71217",name:"Ninjago Fun Pack — Zane",                             type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Zane",img:"imgs/71217-ninjago-zane.jpg"},
+{num:"71218",name:"The Lord of the Rings Fun Pack — Gollum",             type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Gollum",img:"imgs/71218-lotr-gollum.jpg"},
+{num:"71219",name:"The Lord of the Rings Fun Pack — Gandalf",            type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Gandalf the Grey",img:"imgs/71219-lotr-gandalf.jpg"},
+{num:"71220",name:"The Wizard of Oz Fun Pack — Wicked Witch",            type:"Fun Pack",    franchise:"The Wizard of Oz",   wave:"Wave 1",figures:"Wicked Witch",img:"imgs/71220-wizoz-witch.jpg"},
+{num:"71221",name:"Scooby-Doo! Fun Pack — Benny the Spaceman",           type:"Fun Pack",    franchise:"Scooby-Doo!",        wave:"Wave 1",figures:"Benny the Spaceman",img:"imgs/71221-scooby-benny.jpg"},
+{num:"71222",name:"Legends of Chima Fun Pack — Laval",                   type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Laval",img:"imgs/71222-chima-laval.jpg"},
+{num:"71223",name:"Legends of Chima Fun Pack — Cragger",                 type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Cragger",img:"imgs/71223-chima-cragger.jpg"},
+{num:"71224",name:"DC Comics Fun Pack — Superman",                       type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Superman",img:"imgs/71224-dc-superman.jpg"},
+{num:"71225",name:"DC Comics Fun Pack — Joker",                          type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"The Joker",img:"imgs/71225-dc-joker.jpg"},
+{num:"71226",name:"Ghostbusters Fun Pack — Peter Venkman",               type:"Fun Pack",    franchise:"Ghostbusters",       wave:"Wave 1",figures:"Peter Venkman",img:"imgs/71226-ghostbusters-peter.jpg"},
+{num:"71227",name:"The Wizard of Oz Fun Pack — Glinda",                  type:"Fun Pack",    franchise:"The Wizard of Oz",   wave:"Wave 1",figures:"Glinda",img:"imgs/71227-wizoz-glinda.jpg"},
+{num:"71228",name:"Jurassic World Fun Pack — ACU Trooper",               type:"Fun Pack",    franchise:"Jurassic World",     wave:"Wave 1",figures:"ACU Trooper",img:"imgs/71228-jurassic-acu.jpg"},
+{num:"71229",name:"DC Comics Fun Pack — Batman (Excalibur)",              type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Excalibur Batman",img:"imgs/71229-dc-excalbatman.jpg"},
+{num:"71230",name:"Back to the Future Fun Pack — Marty McFly",           type:"Fun Pack",    franchise:"Back to the Future", wave:"Wave 1",figures:"Marty McFly",img:"imgs/71230-bttf-marty.jpg"},
+{num:"71231",name:"The Simpsons Fun Pack — Krusty the Clown",            type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 1",figures:"Krusty the Clown",img:"imgs/71231-simpsons-krusty.jpg"},
+{num:"71232",name:"Portal 2 Fun Pack — Sentry Turret",                   type:"Fun Pack",    franchise:"Portal 2",           wave:"Wave 1",figures:"Sentry Turret",img:"imgs/71232-portal-turret.jpg"},
+{num:"71233",name:"Ghostbusters Fun Pack — Stay Puft",                   type:"Fun Pack",    franchise:"Ghostbusters",       wave:"Wave 1",figures:"Stay Puft",img:"imgs/71233-ghostbusters-staypuft.jpg"},
+{num:"71234",name:"Doctor Who Fun Pack — The Dalek",                     type:"Fun Pack",    franchise:"Doctor Who",         wave:"Wave 1",figures:"Dalek",img:"imgs/71234-doctorwho-dalek.jpg"},
+{num:"71235",name:"Midway Arcade Level Pack",                             type:"Level Pack",  franchise:"Midway Arcade",      wave:"Wave 1",figures:"Gamer Kid",img:"imgs/71235-midway-level.jpg"},
+{num:"71236",name:"DC Comics Fun Pack — Batman (75th Anniversary)",       type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Batman (75th)",img:"imgs/71236-dc-batman75.jpg"},
+{num:"71237",name:"DC Comics Fun Pack — Wonder Woman",                    type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Wonder Woman",img:"imgs/71237-dc-wonderwoman.jpg"},
+{num:"71238",name:"DC Comics Fun Pack — Bane",                            type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Bane",img:"imgs/71238-dc-bane.jpg"},
+
+/* ── WAVE 2 ─────────────────────────────────────────────────── */
+{num:"71239",name:"Scooby-Doo! Level Pack",                              type:"Level Pack",  franchise:"Scooby-Doo!",        wave:"Wave 2",figures:"Scooby-Doo",img:"imgs/71239-scooby-level.jpg"},
+{num:"71240",name:"DC Comics Fun Pack — Supergirl",                      type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 2",figures:"Supergirl",img:"imgs/71240-dc-supergirl.jpg"},
+{num:"71241",name:"The Simpsons Fun Pack — Bart Simpson",                type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 2",figures:"Bart Simpson",img:"imgs/71241-simpsons-bart.jpg"},
+
+/* ── WAVE 3 ─────────────────────────────────────────────────── */
+{num:"71242",name:"Ghostbusters Team Pack",                              type:"Team Pack",   franchise:"Ghostbusters 2016",  wave:"Wave 3",figures:"Abby Yates, Jillian Holtzmann",img:"imgs/71242-gb2016-team.jpg"},
+{num:"71243",name:"Fantastic Beasts and Where to Find Them Fun Pack",   type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 3",figures:"Newt Scamander",img:"imgs/71243-fb-newt.jpg"},
+{num:"71244",name:"Adventure Time Fun Pack — Finn",                      type:"Fun Pack",    franchise:"Adventure Time",     wave:"Wave 3",figures:"Finn",img:"imgs/71244-advtime-finn.jpg"},
+{num:"71245",name:"The A-Team Fun Pack",                                 type:"Fun Pack",    franchise:"The A-Team",         wave:"Wave 3",figures:"B.A. Baracus",img:"imgs/71245-ateam-ba.jpg"},
+{num:"71246",name:"Ghostbusters 2016 Fun Pack — Slimer",                 type:"Fun Pack",    franchise:"Ghostbusters 2016",  wave:"Wave 3",figures:"Slimer",img:"imgs/71246-gb2016-slimer.jpg"},
+{num:"71247",name:"Harry Potter Fun Pack — Harry Potter",                type:"Fun Pack",    franchise:"Harry Potter",       wave:"Wave 3",figures:"Harry Potter",img:"imgs/71247-hp-harry.jpg"},
+
+/* ── WAVE 4 ─────────────────────────────────────────────────── */
+{num:"71248",name:"Teen Titans Go! Team Pack",                           type:"Team Pack",   franchise:"Teen Titans Go!",    wave:"Wave 4",figures:"Robin, Starfire",img:"imgs/71248-ttg-team.jpg"},
+{num:"71249",name:"Adventure Time Fun Pack — Jake the Dog",              type:"Fun Pack",    franchise:"Adventure Time",     wave:"Wave 4",figures:"Jake the Dog",img:"imgs/71249-advtime-jake.jpg"},
+{num:"71250",name:"Teen Titans Go! Fun Pack — Raven",                    type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 4",figures:"Raven",img:"imgs/71250-ttg-raven.jpg"},
+{num:"71251",name:"Harry Potter Fun Pack — Hermione Granger",            type:"Fun Pack",    franchise:"Harry Potter",       wave:"Wave 4",figures:"Hermione Granger",img:"imgs/71251-hp-hermione.jpg"},
+{num:"71252",name:"Gremlins Fun Pack",                                   type:"Fun Pack",    franchise:"Gremlins",           wave:"Wave 4",figures:"Gizmo",img:"imgs/71252-gremlins-gizmo.jpg"},
+{game:"Wave 4",num:"71253",name:"Mission: Impossible Fun Pack",          type:"Fun Pack",    franchise:"Mission: Impossible",wave:"Wave 4",figures:"Ethan Hunt",img:"imgs/71253-missionimp-ethan.jpg"},
+{num:"71254",name:"Adventure Time Level Pack",                           type:"Level Pack",  franchise:"Adventure Time",     wave:"Wave 4",figures:"Marceline",img:"imgs/71254-advtime-level.jpg"},
+{num:"71255",name:"Teen Titans Go! Fun Pack — Cyborg",                   type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 4",figures:"Cyborg (Teen Titans)",img:"imgs/71255-ttg-cyborg.jpg"},
+{num:"71256",name:"Gremlins Fun Pack — Stripe",                          type:"Fun Pack",    franchise:"Gremlins",           wave:"Wave 4",figures:"Stripe",img:"imgs/71256-gremlins-stripe.jpg"},
+{num:"71257",name:"Harry Potter Team Pack",                              type:"Team Pack",   franchise:"Harry Potter",       wave:"Wave 4",figures:"Voldemort, Harry Potter",img:"imgs/71257-hp-team.jpg"},
+
+/* ── WAVE 5 ─────────────────────────────────────────────────── */
+{num:"71258",name:"E.T. the Extra-Terrestrial Fun Pack",                 type:"Fun Pack",    franchise:"E.T.",               wave:"Wave 5",figures:"E.T.",img:"imgs/71258-et-fun.jpg"},
+{num:"71259",name:"The Goonies Level Pack",                              type:"Level Pack",  franchise:"The Goonies",         wave:"Wave 5",figures:"Sloth, Chunk",img:"imgs/71259-goonies-level.jpg"},
+{num:"71260",name:"The LEGO Batman Movie Team Pack",                     type:"Team Pack",   franchise:"DC Comics",          wave:"Wave 5",figures:"Batgirl, Dick Grayson",img:"imgs/71260-legobat-team.jpg"},
+{num:"71261",name:"The LEGO Batman Movie Fun Pack — Bard of Darkness",  type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 5",figures:"Barbara Gordon",img:"imgs/71261-legobat-barbara.jpg"},
+{num:"71262",name:"Knight Rider Fun Pack",                               type:"Fun Pack",    franchise:"Knight Rider",       wave:"Wave 5",figures:"Michael Knight",img:"imgs/71262-kr-michael.jpg"},
+
+/* ── WAVE 6 ─────────────────────────────────────────────────── */
+{num:"71263",name:"Beetlejuice Fun Pack",                                type:"Fun Pack",    franchise:"Beetlejuice",        wave:"Wave 6",figures:"Beetlejuice",img:"imgs/71263-beetlejuice-fun.jpg"},
+{num:"71264",name:"Powerpuff Girls Fun Pack — Blossom",                  type:"Fun Pack",    franchise:"Powerpuff Girls",    wave:"Wave 6",figures:"Blossom",img:"imgs/71264-ppg-blossom.jpg"},
+{num:"71265",name:"Powerpuff Girls Team Pack",                           type:"Team Pack",   franchise:"Powerpuff Girls",    wave:"Wave 6",figures:"Bubbles, Buttercup",img:"imgs/71265-ppg-team.jpg"},
+{num:"71266",name:"Sonic the Hedgehog Fun Pack",                         type:"Fun Pack",    franchise:"Sonic the Hedgehog", wave:"Wave 6",figures:"Sonic",img:"imgs/71266-sonic-fun.jpg"},
+{num:"71267",name:"Fantastic Beasts Fun Pack — Tina Goldstein",          type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 6",figures:"Tina Goldstein",img:"imgs/71267-fb-tina.jpg"},
+
+/* ── WAVE 7 ─────────────────────────────────────────────────── */
+{num:"71268",name:"Powerpuff Girls Fun Pack — Buttercup",                type:"Fun Pack",    franchise:"Powerpuff Girls",    wave:"Wave 7",figures:"Buttercup",img:"imgs/71268-ppg-buttercup.jpg"},
+{num:"71269",name:"Teen Titans Go! Fun Pack — Beast Boy",                type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 7",figures:"Beast Boy",img:"imgs/71269-ttg-beastboy.jpg"},
+{num:"71270",name:"The LEGO Ninjago Movie Fun Pack — Lloyd",             type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 7",figures:"Lloyd",img:"imgs/71270-ninjago-lloyd.jpg"},
+
+/* ── WAVE 8 ─────────────────────────────────────────────────── */
+{num:"71271",name:"The LEGO Ninjago Movie Fun Pack — Nya",               type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 8",figures:"Nya",img:"imgs/71271-ninjago-nya2.jpg"},
+{num:"71272",name:"The LEGO Ninjago Movie Team Pack",                    type:"Team Pack",   franchise:"Ninjago",            wave:"Wave 8",figures:"Lloyd, Cole",img:"imgs/71272-ninjago-team2.jpg"},
+{num:"71273",name:"Fantastic Beasts Fun Pack — Credence Barebone",       type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 8",figures:"Credence Barebone",img:"imgs/71273-fb-credence.jpg"},
+
+/* ── WAVE 9 ─────────────────────────────────────────────────── */
+{num:"71274",name:"The LEGO Batman Movie Fun Pack — Excalibur Batman",   type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 9",figures:"Excalibur Batman",img:"imgs/71274-legobat-excalbat.jpg"},
+{num:"71275",name:"The LEGO Batman Movie Fun Pack — Red Hood",           type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 9",figures:"Red Hood",img:"imgs/71275-legobat-redhood.jpg"},
+{num:"71276",name:"Sonic the Hedgehog Fun Pack — Tails",                 type:"Fun Pack",    franchise:"Sonic the Hedgehog", wave:"Wave 9",figures:"Tails",img:"imgs/71276-sonic-tails.jpg"},
+{num:"71277",name:"Goonies Fun Pack — Sloth",                            type:"Fun Pack",    franchise:"The Goonies",        wave:"Wave 9",figures:"Sloth",img:"imgs/71277-goonies-sloth.jpg"},
+{num:"71278",name:"Fantastic Beasts Fun Pack — Queenie Goldstein",       type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 9",figures:"Queenie Goldstein",img:"imgs/71278-fb-queenie.jpg"},
+];
+
+/* ── FILTER STATE ─────────────────────────────────────────────────── */
+let activeType="All", activeWave="All", activeFranch="All", viewMode="grid";
+const owned = new Set(JSON.parse(localStorage.getItem("ld_owned")||"[]"));
+function itemKey(d){ return d.num+"|"+d.name; }
+
+/* ── BUILD FILTER BUTTONS ─────────────────────────────────────────── */
+function buildFilters(id, items, getColor, getLabel, setActive){
+  const el = document.getElementById(id);
+  items.forEach(item => {
+    const btn = document.createElement("button");
+    btn.className = "fbtn" + (item==="All"?" active":"");
+    btn.textContent = getLabel(item);
+    const col = getColor(item);
+    if(item==="All") btn.style.cssText="background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.4);color:#ffd700";
+    else if(col) btn.style.cssText=`background:${col[0]};color:${col[1]};border-color:${col[0]}`;
+    btn.addEventListener("click", () => {
+      el.querySelectorAll(".fbtn").forEach(b=>{b.classList.remove("active");b.style.cssText="";});
+      btn.classList.add("active");
+      if(item==="All") btn.style.cssText="background:rgba(255,215,0,0.1);border-color:rgba(255,215,0,0.4);color:#ffd700";
+      else if(col) btn.style.cssText=`background:${col[0]};color:${col[1]};border-color:${col[0]};box-shadow:0 2px 10px ${col[0]}55`;
+      setActive(item); render();
+    });
+    el.appendChild(btn);
+  });
+}
+
+const allTypes  = ["All", "Starter Pack", "Level Pack", "Team Pack", "Fun Pack"];
+const allWaves  = ["All", "Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","Wave 7","Wave 8","Wave 9"];
+const allFranch = ["All", ...new Set(packs.map(p=>p.franchise))].sort((a,b)=>a==="All"?-1:a.localeCompare(b));
+
+buildFilters("typeFilters", allTypes,
+  t => typeColors[t] ? [typeColors[t],"#000"] : null,
+  t => t,
+  t => { activeType=t; }
+);
+buildFilters("waveFilters", allWaves,
+  w => waveColors[w] ? [waveColors[w],"#000"] : null,
+  w => w,
+  w => { activeWave=w; }
+);
+buildFilters("franchFilters", allFranch,
+  f => franchColors[f] || null,
+  f => f==="All"?"All Franchises":f,
+  f => { activeFranch=f; }
+);
+
+/* ── MAKE CARD ─────────────────────────────────────────────────────── */
+function makeCard(data, delay){
+  const tc  = typeColors[data.type] || "#ffd700";
+  const wc  = waveColors[data.wave] || "#888";
+  const fc  = franchColors[data.franchise] ? franchColors[data.franchise][0] : "#555";
+  const fcfg= franchColors[data.franchise] ? franchColors[data.franchise][1] : "#fff";
+  const key = itemKey(data);
+  const isOwned = owned.has(key);
+
+  const card = document.createElement("div");
+  card.className = "card" + (isOwned?" owned":"");
+  card.style.animationDelay = delay+"s";
+
+  /* Image area */
+  const imgA = document.createElement("div");
+  imgA.className = "card-img";
+  imgA.style.background = `radial-gradient(ellipse at 50% 80%, ${fc}18 0%, rgba(10,10,10,0.95) 70%)`;
+
+  const ph = document.createElement("div");
+  ph.className = "placeholder";
+  ph.innerHTML = `<div class="ph-num" style="color:${tc}">#${data.num}</div><div class="ph-name" style="color:${tc}">${data.name.toUpperCase()}</div>`;
+
+  const img = document.createElement("img");
+  img.alt = data.name;
+  img.loading = "lazy";
+  img.src = data.img;
+  img.onerror = () => { img.style.display="none"; ph.style.display="flex"; };
+
+  imgA.appendChild(ph);
+  imgA.appendChild(img);
+
+  /* Type badge */
+  const tb = document.createElement("div");
+  tb.className = "type-badge";
+  tb.style.background = tc;
+  tb.style.color = "#000";
+  tb.textContent = data.type;
+  imgA.appendChild(tb);
+
+  /* Wave badge */
+  const wb = document.createElement("div");
+  wb.className = "wave-badge";
+  wb.style.background = wc+"22";
+  wb.style.color = wc;
+  wb.style.border = `1px solid ${wc}44`;
+  wb.textContent = data.wave;
+  imgA.appendChild(wb);
+
+  /* Owned button */
+  const ob = document.createElement("div");
+  ob.className = "owned-btn" + (isOwned?" owned":"");
+  ob.textContent = "✓";
+  ob.addEventListener("click", e => {
+    e.stopPropagation();
+    if(owned.has(key)){ owned.delete(key); ob.classList.remove("owned"); card.classList.remove("owned"); }
+    else              { owned.add(key);    ob.classList.add("owned");    card.classList.add("owned");    }
+    localStorage.setItem("ld_owned", JSON.stringify([...owned]));
+    updateStats();
+  });
+  imgA.appendChild(ob);
+  card.appendChild(imgA);
+
+  /* Body */
+  const body = document.createElement("div");
+  body.className = "card-body";
+  body.innerHTML = `
+    <div class="card-set">#${data.num}</div>
+    <div class="card-name">${data.name}</div>
+    <div class="card-tags">
+      <span class="franchise-tag" style="background:${fc};color:${fcfg}">${data.franchise}</span>
+      ${data.figures ? `<span class="figures-tag">${data.figures}</span>` : ""}
+    </div>`;
+  card.appendChild(body);
+
+  /* Hover glow */
+  card.addEventListener("mouseenter", () => {
+    card.style.borderColor = fc+"55";
+    card.style.boxShadow   = `0 14px 36px ${fc}20, 0 2px 8px rgba(0,0,0,0.5)`;
+  });
+  card.addEventListener("mouseleave", () => {
+    card.style.borderColor = "";
+    card.style.boxShadow   = "";
+  });
+
+  return card;
+}
+
+/* ── RENDER ───────────────────────────────────────────────────────── */
+function render(){
+  const q   = document.getElementById("search").value.toLowerCase().trim();
+  const out = document.getElementById("output");
+  out.innerHTML = "";
+
+  const filtered = packs.filter(p => {
+    if(activeType   !== "All" && p.type      !== activeType)   return false;
+    if(activeWave   !== "All" && p.wave      !== activeWave)   return false;
+    if(activeFranch !== "All" && p.franchise !== activeFranch) return false;
+    if(q && !(
+      p.name.toLowerCase().includes(q) ||
+      p.num.includes(q) ||
+      p.franchise.toLowerCase().includes(q) ||
+      p.wave.toLowerCase().includes(q) ||
+      p.type.toLowerCase().includes(q) ||
+      (p.figures||"").toLowerCase().includes(q)
+    )) return false;
+    return true;
+  });
+
+  if(!filtered.length){
+    const g = document.createElement("div");
+    g.className = "grid";
+    g.innerHTML = `<div class="empty"><div class="empty-icon">◈</div><p>No packs match "${q||"current filters"}"</p></div>`;
+    out.appendChild(g);
+  } else {
+    /* Group by wave */
+    const waveOrder = ["Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","Wave 7","Wave 8","Wave 9"];
+    const byWave = {};
+    filtered.forEach(p => { (byWave[p.wave]=byWave[p.wave]||[]).push(p); });
+
+    let idx = 0;
+    waveOrder.forEach(w => {
+      if(!byWave[w]) return;
+      const wc = waveColors[w]||"#ffd700";
+      const items = byWave[w];
+
+      const lbl = document.createElement("div");
+      lbl.className = "section-label";
+      lbl.innerHTML = `<div class="slabel-inner"><div class="sdot" style="background:${wc};box-shadow:0 0 6px ${wc}88"></div><span class="stxt" style="color:${wc}">${w}</span><span class="scnt">${items.length} pack${items.length!==1?"s":""}</span></div>`;
+      out.appendChild(lbl);
+
+      const g = document.createElement("div");
+      g.className = "grid" + (viewMode==="list"?" list-view":"");
+      items.forEach(p => g.appendChild(makeCard(p, Math.min((idx++)*0.01, 0.35))));
+      out.appendChild(g);
+    });
+  }
+
+  document.getElementById("countPill").textContent = `Showing ${filtered.length} pack${filtered.length!==1?"s":""}`;
+  updateStats();
+}
+
+/* ── STATS ────────────────────────────────────────────────────────── */
+function updateStats(){
+  const t   = packs.length;
+  const n   = owned.size;
+  const pct = t>0 ? Math.round(n/t*100) : 0;
+  document.getElementById("statOwned").textContent = n;
+  document.getElementById("statTotal").textContent = t;
+  document.getElementById("statPct").textContent   = pct+"%";
+  document.getElementById("totalCount").textContent = t;
+  document.getElementById("ownedCount").textContent = `✓ ${n} owned`;
+}
+
+/* ── VIEW TOGGLE ──────────────────────────────────────────────────── */
+function setView(mode){
+  viewMode = mode;
+  document.getElementById("gridBtn").classList.toggle("active", mode==="grid");
+  document.getElementById("listBtn").classList.toggle("active", mode==="list");
+  render();
+}
+
+/* ── INIT ─────────────────────────────────────────────────────────── */
+updateStats();
+render();
+document.getElementById("search").addEventListener("input", render);
+</script>
+
+<footer style="position:relative;z-index:1;margin-top:60px;padding:28px 24px;border-top:1px solid rgba(255,215,0,0.08);text-align:center;">
+  <p style="font-family:'Oswald',sans-serif;font-size:10px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:#444;line-height:1.9;max-width:700px;margin:0 auto;">
+    Fan-made collectible checklist for personal use only. Not affiliated with, endorsed by, or connected to
+    The LEGO Group, TT Games, Warner Bros. Interactive Entertainment, or any licence holders.
+    All product names, characters, set numbers and trademarks are property of their respective owners.
+    Images sourced from public retailer and wiki listings for reference purposes only.
+    No copyright infringement intended. No commercial purpose.
+  </p>
+</footer>
+
+</body>
+</html>
