@@ -386,7 +386,7 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
 .card.owned::before { background: linear-gradient(90deg, transparent, var(--ld-green), transparent); opacity: 1; }
 
 .card-img {
-  height: 175px;
+  height: 210px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -534,7 +534,7 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
 
 /* ── LIST VIEW ────────────────────────────────────────────────── */
 .grid.list-view .card { display: flex; flex-direction: row; align-items: center; }
-.grid.list-view .card-img { width: 80px; height: 80px; flex-shrink: 0; border-radius: 0; }
+.grid.list-view .card-img { width: 90px; height: 90px; flex-shrink: 0; border-radius: 0; }
 .grid.list-view .card-img::after { display: none; }
 .grid.list-view .card-img img { padding: 4px; }
 .grid.list-view .card-body { flex: 1; padding: 8px 14px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
@@ -591,7 +591,7 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
       <div class="stat"><div class="stat-val sv-y" id="statOwned">0</div><div class="stat-lbl">Owned</div></div>
       <div class="stat"><div class="stat-val sv-w" id="statTotal">0</div><div class="stat-lbl">Total</div></div>
       <div class="stat"><div class="stat-val sv-c" id="statPct">0%</div><div class="stat-lbl">Complete</div></div>
-      <div class="stat"><div class="stat-val sv-w">9</div><div class="stat-lbl">Waves</div></div>
+      
     </div>
   </div>
 </header>
@@ -630,7 +630,9 @@ const typeColors = {
   "Starter Pack": "#ffd700",
   "Level Pack":   "#e3000b",
   "Team Pack":    "#006cb7",
-  "Fun Pack":     "#00b4d8"
+  "Fun Pack":     "#00b4d8",
+  "Story Pack":   "#a855f7",
+  "Polybag":      "#f59e0b"
 };
 
 /* Franchise colour mapping (bg, fg) */
@@ -669,118 +671,116 @@ const franchColors = {
   "Supergirl":          ["#dc2626","#fff"],
   "Krusty the Clown":   ["#ffd700","#000"],
   "A-Team":             ["#dc2626","#fff"],
-  "Hire-a-Hero":        ["#0ea5e9","#000"]
+  "Hire-a-Hero":        ["#0ea5e9","#000"],
+  "LEGO City":          ["#e3000b","#fff"],
+  "The LEGO Batman Movie":["#1e3a8a","#fff"],
+  "The Powerpuff Girls":["#ec4899","#000"]
 };
 
 const waveColors = {
   "Wave 1":"#ffd700","Wave 2":"#f97316","Wave 3":"#22c55e",
   "Wave 4":"#3b82f6","Wave 5":"#a855f7","Wave 6":"#ec4899",
-  "Wave 7":"#06b6d4","Wave 8":"#f59e0b","Wave 9":"#ef4444"
+  "Wave 7":"#06b6d4","Wave 7.5":"#8b5cf6","Wave 8":"#f59e0b","Wave 9":"#ef4444"
 };
 
 const packs = [
-/* ── STARTER PACKS ─────────────────────────────────────────── */
-{num:"71171",name:"LEGO Dimensions Starter Pack",                        type:"Starter Pack",franchise:"LEGO",           wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle · PS3 / PS4 / Xbox 360 / Xbox One / Wii U",img:"imgs/71171-starter.jpg"},
+/* ═══════════════════════════════════════════════════════════════
+   SOURCE: lego-dimensions.fandom.com/wiki/
+   All set numbers and names verified against the official wiki.
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── STARTER PACK ──────────────────────────────────────────── */
+{num:"71171",name:"Starter Pack",                                         type:"Starter Pack",franchise:"LEGO",              wave:"Wave 1",figures:"Batman, Gandalf, Wyldstyle · PS3/PS4/Xbox 360/Xbox One/Wii U",img:"imgs/71171-starter.jpg"},
 
 /* ── WAVE 1 — LEVEL PACKS ──────────────────────────────────── */
-{num:"71201",name:"Back to the Future Level Pack",                       type:"Level Pack",  franchise:"Back to the Future", wave:"Wave 1",figures:"Marty McFly",img:"imgs/71201-bttf-level.jpg"},
-{num:"71202",name:"The Simpsons Level Pack",                             type:"Level Pack",  franchise:"The Simpsons",       wave:"Wave 1",figures:"Homer Simpson",img:"imgs/71202-simpsons-level.jpg"},
-{num:"71203",name:"Portal 2 Level Pack",                                 type:"Level Pack",  franchise:"Portal 2",           wave:"Wave 1",figures:"Chell",img:"imgs/71203-portal-level.jpg"},
+{num:"71201",name:"Back to the Future Level Pack",                        type:"Level Pack",  franchise:"Back to the Future", wave:"Wave 1",figures:"Marty McFly",             img:"imgs/71201-bttf-level.jpg"},
+{num:"71202",name:"The Simpsons Level Pack",                              type:"Level Pack",  franchise:"The Simpsons",       wave:"Wave 1",figures:"Homer Simpson",            img:"imgs/71202-simpsons-level.jpg"},
+{num:"71203",name:"Portal 2 Level Pack",                                  type:"Level Pack",  franchise:"Portal 2",           wave:"Wave 1",figures:"Chell",                    img:"imgs/71203-portal-level.jpg"},
 
 /* ── WAVE 1 — TEAM PACKS ───────────────────────────────────── */
-{num:"71204",name:"Doctor Who Team Pack",                                type:"Team Pack",   franchise:"Doctor Who",         wave:"Wave 1",figures:"The Doctor, Cyberman",img:"imgs/71204-doctorwho-team.jpg"},
-{num:"71205",name:"Jurassic World Team Pack",                            type:"Team Pack",   franchise:"Jurassic World",     wave:"Wave 1",figures:"Owen, ACU Trooper",img:"imgs/71205-jurassicworld-team.jpg"},
-{num:"71206",name:"Scooby-Doo! Team Pack",                               type:"Team Pack",   franchise:"Scooby-Doo!",        wave:"Wave 1",figures:"Scooby-Doo, Shaggy",img:"imgs/71206-scooby-team.jpg"},
-{num:"71207",name:"Ninjago Team Pack",                                   type:"Team Pack",   franchise:"Ninjago",            wave:"Wave 1",figures:"Kai, Cole",img:"imgs/71207-ninjago-team.jpg"},
-{num:"71208",name:"DC Comics Team Pack",                                 type:"Team Pack",   franchise:"DC Comics",          wave:"Wave 1",figures:"The Flash, Aquaman",img:"imgs/71208-dc-team.jpg"},
-{num:"71209",name:"The Lord of the Rings Team Pack",                     type:"Team Pack",   franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Legolas, Gimli",img:"imgs/71209-lotr-team.jpg"},
+{num:"71205",name:"Jurassic World Team Pack",                             type:"Team Pack",   franchise:"Jurassic World",     wave:"Wave 1",figures:"Owen Grady, ACU Trooper",  img:"imgs/71205-jurassicworld-team.jpg"},
+{num:"71206",name:"Scooby-Doo! Team Pack",                                type:"Team Pack",   franchise:"Scooby-Doo!",        wave:"Wave 1",figures:"Scooby-Doo, Shaggy",       img:"imgs/71206-scooby-team.jpg"},
 
 /* ── WAVE 1 — FUN PACKS ────────────────────────────────────── */
-{num:"71210",name:"DC Comics Fun Pack — Cyborg",                         type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Cyborg",img:"imgs/71210-dc-cyborg.jpg"},
-{num:"71211",name:"Back to the Future Fun Pack — Doc Brown",             type:"Fun Pack",    franchise:"Back to the Future", wave:"Wave 1",figures:"Doc Brown",img:"imgs/71211-bttf-docbrown.jpg"},
-{num:"71212",name:"The LEGO Movie Fun Pack — Emmet",                     type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Emmet",img:"imgs/71212-legomovie-emmet.jpg"},
-{num:"71213",name:"The LEGO Movie Fun Pack — Bad Cop",                   type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Bad Cop",img:"imgs/71213-legomovie-badcop.jpg"},
-{num:"71214",name:"The Simpsons Fun Pack — Homer Simpson",               type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 1",figures:"Homer Simpson",img:"imgs/71214-simpsons-homer.jpg"},
-{num:"71215",name:"Ninjago Fun Pack — Jay",                              type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Jay",img:"imgs/71215-ninjago-jay.jpg"},
-{num:"71216",name:"Ninjago Fun Pack — Nya",                              type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Nya",img:"imgs/71216-ninjago-nya.jpg"},
-{num:"71217",name:"Ninjago Fun Pack — Zane",                             type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Zane",img:"imgs/71217-ninjago-zane.jpg"},
-{num:"71218",name:"The Lord of the Rings Fun Pack — Gollum",             type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Gollum",img:"imgs/71218-lotr-gollum.jpg"},
-{num:"71219",name:"The Lord of the Rings Fun Pack — Gandalf",            type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Gandalf the Grey",img:"imgs/71219-lotr-gandalf.jpg"},
-{num:"71220",name:"The Wizard of Oz Fun Pack — Wicked Witch",            type:"Fun Pack",    franchise:"The Wizard of Oz",   wave:"Wave 1",figures:"Wicked Witch",img:"imgs/71220-wizoz-witch.jpg"},
-{num:"71221",name:"Scooby-Doo! Fun Pack — Benny the Spaceman",           type:"Fun Pack",    franchise:"Scooby-Doo!",        wave:"Wave 1",figures:"Benny the Spaceman",img:"imgs/71221-scooby-benny.jpg"},
-{num:"71222",name:"Legends of Chima Fun Pack — Laval",                   type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Laval",img:"imgs/71222-chima-laval.jpg"},
-{num:"71223",name:"Legends of Chima Fun Pack — Cragger",                 type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Cragger",img:"imgs/71223-chima-cragger.jpg"},
-{num:"71224",name:"DC Comics Fun Pack — Superman",                       type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Superman",img:"imgs/71224-dc-superman.jpg"},
-{num:"71225",name:"DC Comics Fun Pack — Joker",                          type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"The Joker",img:"imgs/71225-dc-joker.jpg"},
-{num:"71226",name:"Ghostbusters Fun Pack — Peter Venkman",               type:"Fun Pack",    franchise:"Ghostbusters",       wave:"Wave 1",figures:"Peter Venkman",img:"imgs/71226-ghostbusters-peter.jpg"},
-{num:"71227",name:"The Wizard of Oz Fun Pack — Glinda",                  type:"Fun Pack",    franchise:"The Wizard of Oz",   wave:"Wave 1",figures:"Glinda",img:"imgs/71227-wizoz-glinda.jpg"},
-{num:"71228",name:"Jurassic World Fun Pack — ACU Trooper",               type:"Fun Pack",    franchise:"Jurassic World",     wave:"Wave 1",figures:"ACU Trooper",img:"imgs/71228-jurassic-acu.jpg"},
-{num:"71229",name:"DC Comics Fun Pack — Batman (Excalibur)",              type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Excalibur Batman",img:"imgs/71229-dc-excalbatman.jpg"},
-{num:"71230",name:"Back to the Future Fun Pack — Marty McFly",           type:"Fun Pack",    franchise:"Back to the Future", wave:"Wave 1",figures:"Marty McFly",img:"imgs/71230-bttf-marty.jpg"},
-{num:"71231",name:"The Simpsons Fun Pack — Krusty the Clown",            type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 1",figures:"Krusty the Clown",img:"imgs/71231-simpsons-krusty.jpg"},
-{num:"71232",name:"Portal 2 Fun Pack — Sentry Turret",                   type:"Fun Pack",    franchise:"Portal 2",           wave:"Wave 1",figures:"Sentry Turret",img:"imgs/71232-portal-turret.jpg"},
-{num:"71233",name:"Ghostbusters Fun Pack — Stay Puft",                   type:"Fun Pack",    franchise:"Ghostbusters",       wave:"Wave 1",figures:"Stay Puft",img:"imgs/71233-ghostbusters-staypuft.jpg"},
-{num:"71234",name:"Doctor Who Fun Pack — The Dalek",                     type:"Fun Pack",    franchise:"Doctor Who",         wave:"Wave 1",figures:"Dalek",img:"imgs/71234-doctorwho-dalek.jpg"},
-{num:"71235",name:"Midway Arcade Level Pack",                             type:"Level Pack",  franchise:"Midway Arcade",      wave:"Wave 1",figures:"Gamer Kid",img:"imgs/71235-midway-level.jpg"},
-{num:"71236",name:"DC Comics Fun Pack — Batman (75th Anniversary)",       type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Batman (75th)",img:"imgs/71236-dc-batman75.jpg"},
-{num:"71237",name:"DC Comics Fun Pack — Wonder Woman",                    type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Wonder Woman",img:"imgs/71237-dc-wonderwoman.jpg"},
-{num:"71238",name:"DC Comics Fun Pack — Bane",                            type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Bane",img:"imgs/71238-dc-bane.jpg"},
+{num:"71209",name:"Wonder Woman Fun Pack",                                type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Wonder Woman",              img:"imgs/71209-dc-wonderwoman.jpg"},
+{num:"71210",name:"Cyborg Fun Pack",                                      type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 1",figures:"Cyborg",                   img:"imgs/71210-dc-cyborg.jpg"},
+{num:"71212",name:"Emmet Fun Pack",                                       type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Emmet",                    img:"imgs/71212-legomovie-emmet.jpg"},
+{num:"71213",name:"Bad Cop Fun Pack",                                     type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Bad Cop",                  img:"imgs/71213-legomovie-badcop.jpg"},
+{num:"71214",name:"Benny Fun Pack",                                       type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 1",figures:"Benny",                    img:"imgs/71214-legomovie-benny.jpg"},
+{num:"71215",name:"Jay Fun Pack",                                         type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Jay",                      img:"imgs/71215-ninjago-jay.jpg"},
+{num:"71216",name:"Nya Fun Pack",                                         type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Nya",                      img:"imgs/71216-ninjago-nya.jpg"},
+{num:"71217",name:"Zane Fun Pack",                                        type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 1",figures:"Zane",                     img:"imgs/71217-ninjago-zane.jpg"},
+{num:"71218",name:"Gollum Fun Pack",                                      type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Gollum",                 img:"imgs/71218-lotr-gollum.jpg"},
+{num:"71219",name:"Legolas Fun Pack",                                     type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Legolas",                img:"imgs/71219-lotr-legolas.jpg"},
+{num:"71220",name:"Gimli Fun Pack",                                       type:"Fun Pack",    franchise:"The Lord of the Rings",wave:"Wave 1",figures:"Gimli",                  img:"imgs/71220-lotr-gimli.jpg"},
+{num:"71221",name:"Wicked Witch Fun Pack",                                type:"Fun Pack",    franchise:"The Wizard of Oz",   wave:"Wave 1",figures:"Wicked Witch of the West",  img:"imgs/71221-wizoz-witch.jpg"},
+{num:"71222",name:"Laval Fun Pack",                                       type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Laval",                    img:"imgs/71222-chima-laval.jpg"},
+{num:"71223",name:"Cragger Fun Pack",                                     type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Cragger",                  img:"imgs/71223-chima-cragger.jpg"},
+{num:"71232",name:"Eris Fun Pack",                                        type:"Fun Pack",    franchise:"Legends of Chima",   wave:"Wave 1",figures:"Eris",                     img:"imgs/71232-chima-eris.jpg"},
 
 /* ── WAVE 2 ─────────────────────────────────────────────────── */
-{num:"71239",name:"Scooby-Doo! Level Pack",                              type:"Level Pack",  franchise:"Scooby-Doo!",        wave:"Wave 2",figures:"Scooby-Doo",img:"imgs/71239-scooby-level.jpg"},
-{num:"71240",name:"DC Comics Fun Pack — Supergirl",                      type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 2",figures:"Supergirl",img:"imgs/71240-dc-supergirl.jpg"},
-{num:"71241",name:"The Simpsons Fun Pack — Bart Simpson",                type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 2",figures:"Bart Simpson",img:"imgs/71241-simpsons-bart.jpg"},
+{num:"71204",name:"Doctor Who Level Pack",                                type:"Level Pack",  franchise:"Doctor Who",         wave:"Wave 2",figures:"The Twelfth Doctor",        img:"imgs/71204-doctorwho-team.jpg"},
+{num:"71207",name:"Ninjago Team Pack",                                    type:"Team Pack",   franchise:"Ninjago",            wave:"Wave 2",figures:"Kai, Cole",                 img:"imgs/71207-ninjago-team.jpg"},
+{num:"71211",name:"Bart Simpson Fun Pack",                                type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 2",figures:"Bart Simpson",              img:"imgs/71211-simpsons-bart.jpg"},
+{num:"71227",name:"Krusty the Clown Fun Pack",                            type:"Fun Pack",    franchise:"The Simpsons",       wave:"Wave 2",figures:"Krusty the Clown",          img:"imgs/71227-simpsons-krusty.jpg"},
+{num:"71231",name:"Unikitty Fun Pack",                                    type:"Fun Pack",    franchise:"The LEGO Movie",     wave:"Wave 2",figures:"Unikitty",                  img:"imgs/71231-legomovie-unikitty.jpg"},
 
 /* ── WAVE 3 ─────────────────────────────────────────────────── */
-{num:"71242",name:"Ghostbusters Team Pack",                              type:"Team Pack",   franchise:"Ghostbusters 2016",  wave:"Wave 3",figures:"Abby Yates, Jillian Holtzmann",img:"imgs/71242-gb2016-team.jpg"},
-{num:"71243",name:"Fantastic Beasts and Where to Find Them Fun Pack",   type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 3",figures:"Newt Scamander",img:"imgs/71243-fb-newt.jpg"},
-{num:"71244",name:"Adventure Time Fun Pack — Finn",                      type:"Fun Pack",    franchise:"Adventure Time",     wave:"Wave 3",figures:"Finn",img:"imgs/71244-advtime-finn.jpg"},
-{num:"71245",name:"The A-Team Fun Pack",                                 type:"Fun Pack",    franchise:"The A-Team",         wave:"Wave 3",figures:"B.A. Baracus",img:"imgs/71245-ateam-ba.jpg"},
-{num:"71246",name:"Ghostbusters 2016 Fun Pack — Slimer",                 type:"Fun Pack",    franchise:"Ghostbusters 2016",  wave:"Wave 3",figures:"Slimer",img:"imgs/71246-gb2016-slimer.jpg"},
-{num:"71247",name:"Harry Potter Fun Pack — Harry Potter",                type:"Fun Pack",    franchise:"Harry Potter",       wave:"Wave 3",figures:"Harry Potter",img:"imgs/71247-hp-harry.jpg"},
+{num:"71228",name:"Ghostbusters Level Pack",                              type:"Level Pack",  franchise:"Ghostbusters",       wave:"Wave 3",figures:"Peter Venkman",             img:"imgs/71228-gb-petervenkman.jpg"},
+{num:"71229",name:"DC Comics Team Pack",                                  type:"Team Pack",   franchise:"DC Comics",          wave:"Wave 3",figures:"The Joker, Harley Quinn",   img:"imgs/71229-dc-teampack.jpg"},
+{num:"71230",name:"Doc Brown Fun Pack",                                   type:"Fun Pack",    franchise:"Back to the Future", wave:"Wave 3",figures:"Doc Brown",                 img:"imgs/71230-bttf-marty.jpg"},
+{num:"71234",name:"Sensei Wu Fun Pack",                                   type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 3",figures:"Sensei Wu",                 img:"imgs/71234-ninjago-sensuwu.jpg"},
+{num:"71238",name:"Cyberman Fun Pack",                                    type:"Fun Pack",    franchise:"Doctor Who",         wave:"Wave 3",figures:"Cyberman",                  img:"imgs/71238-dw-cyberman.jpg"},
 
 /* ── WAVE 4 ─────────────────────────────────────────────────── */
-{num:"71248",name:"Teen Titans Go! Team Pack",                           type:"Team Pack",   franchise:"Teen Titans Go!",    wave:"Wave 4",figures:"Robin, Starfire",img:"imgs/71248-ttg-team.jpg"},
-{num:"71249",name:"Adventure Time Fun Pack — Jake the Dog",              type:"Fun Pack",    franchise:"Adventure Time",     wave:"Wave 4",figures:"Jake the Dog",img:"imgs/71249-advtime-jake.jpg"},
-{num:"71250",name:"Teen Titans Go! Fun Pack — Raven",                    type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 4",figures:"Raven",img:"imgs/71250-ttg-raven.jpg"},
-{num:"71251",name:"Harry Potter Fun Pack — Hermione Granger",            type:"Fun Pack",    franchise:"Harry Potter",       wave:"Wave 4",figures:"Hermione Granger",img:"imgs/71251-hp-hermione.jpg"},
-{num:"71252",name:"Gremlins Fun Pack",                                   type:"Fun Pack",    franchise:"Gremlins",           wave:"Wave 4",figures:"Gizmo",img:"imgs/71252-gremlins-gizmo.jpg"},
-{game:"Wave 4",num:"71253",name:"Mission: Impossible Fun Pack",          type:"Fun Pack",    franchise:"Mission: Impossible",wave:"Wave 4",figures:"Ethan Hunt",img:"imgs/71253-missionimp-ethan.jpg"},
-{num:"71254",name:"Adventure Time Level Pack",                           type:"Level Pack",  franchise:"Adventure Time",     wave:"Wave 4",figures:"Marceline",img:"imgs/71254-advtime-level.jpg"},
-{num:"71255",name:"Teen Titans Go! Fun Pack — Cyborg",                   type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 4",figures:"Cyborg (Teen Titans)",img:"imgs/71255-ttg-cyborg.jpg"},
-{num:"71256",name:"Gremlins Fun Pack — Stripe",                          type:"Fun Pack",    franchise:"Gremlins",           wave:"Wave 4",figures:"Stripe",img:"imgs/71256-gremlins-stripe.jpg"},
-{num:"71257",name:"Harry Potter Team Pack",                              type:"Team Pack",   franchise:"Harry Potter",       wave:"Wave 4",figures:"Voldemort, Harry Potter",img:"imgs/71257-hp-team.jpg"},
+{num:"71235",name:"Midway Arcade Level Pack",                             type:"Level Pack",  franchise:"Midway Arcade",      wave:"Wave 4",figures:"Gamer Kid",                 img:"imgs/71235-midway-level.jpg"},
+{num:"71233",name:"Stay Puft Fun Pack",                                   type:"Fun Pack",    franchise:"Ghostbusters",       wave:"Wave 4",figures:"Stay Puft",                 img:"imgs/71233-ghostbusters-staypuft.jpg"},
+{num:"71236",name:"Superman Fun Pack",                                    type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 4",figures:"Superman",                  img:"imgs/71236-dc-superman.jpg"},
+{num:"71237",name:"Aquaman Fun Pack",                                     type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 4",figures:"Aquaman",                   img:"imgs/71237-dc-aquaman.jpg"},
+{num:"71239",name:"Lloyd Fun Pack",                                       type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 4",figures:"Lloyd",                     img:"imgs/71239-ninjago-lloyd.jpg"},
+{num:"71240",name:"Bane Fun Pack",                                        type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 4",figures:"Bane",                      img:"imgs/71240-dc-bane.jpg"},
+{num:"71241",name:"Slimer Fun Pack",                                      type:"Fun Pack",    franchise:"Ghostbusters",       wave:"Wave 4",figures:"Slimer",                    img:"imgs/71241-gb-slimer.jpg"},
 
-/* ── WAVE 5 ─────────────────────────────────────────────────── */
-{num:"71258",name:"E.T. the Extra-Terrestrial Fun Pack",                 type:"Fun Pack",    franchise:"E.T.",               wave:"Wave 5",figures:"E.T.",img:"imgs/71258-et-fun.jpg"},
-{num:"71259",name:"The Goonies Level Pack",                              type:"Level Pack",  franchise:"The Goonies",         wave:"Wave 5",figures:"Sloth, Chunk",img:"imgs/71259-goonies-level.jpg"},
-{num:"71260",name:"The LEGO Batman Movie Team Pack",                     type:"Team Pack",   franchise:"DC Comics",          wave:"Wave 5",figures:"Batgirl, Dick Grayson",img:"imgs/71260-legobat-team.jpg"},
-{num:"71261",name:"The LEGO Batman Movie Fun Pack — Bard of Darkness",  type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 5",figures:"Barbara Gordon",img:"imgs/71261-legobat-barbara.jpg"},
-{num:"71262",name:"Knight Rider Fun Pack",                               type:"Fun Pack",    franchise:"Knight Rider",       wave:"Wave 5",figures:"Michael Knight",img:"imgs/71262-kr-michael.jpg"},
 
-/* ── WAVE 6 ─────────────────────────────────────────────────── */
-{num:"71263",name:"Beetlejuice Fun Pack",                                type:"Fun Pack",    franchise:"Beetlejuice",        wave:"Wave 6",figures:"Beetlejuice",img:"imgs/71263-beetlejuice-fun.jpg"},
-{num:"71264",name:"Powerpuff Girls Fun Pack — Blossom",                  type:"Fun Pack",    franchise:"Powerpuff Girls",    wave:"Wave 6",figures:"Blossom",img:"imgs/71264-ppg-blossom.jpg"},
-{num:"71265",name:"Powerpuff Girls Team Pack",                           type:"Team Pack",   franchise:"Powerpuff Girls",    wave:"Wave 6",figures:"Bubbles, Buttercup",img:"imgs/71265-ppg-team.jpg"},
-{num:"71266",name:"Sonic the Hedgehog Fun Pack",                         type:"Fun Pack",    franchise:"Sonic the Hedgehog", wave:"Wave 6",figures:"Sonic",img:"imgs/71266-sonic-fun.jpg"},
-{num:"71267",name:"Fantastic Beasts Fun Pack — Tina Goldstein",          type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 6",figures:"Tina Goldstein",img:"imgs/71267-fb-tina.jpg"},
+/* ── WAVE 5 — POLYBAGS ────────────────────────────────────── */
+{num:"71340",name:"Supergirl Polybag",                                    type:"Polybag",     franchise:"DC Comics",          wave:"Wave 5",figures:"Supergirl",                 img:"imgs/71340-dc-supergirl.jpg"},
+{num:"71342",name:"Green Arrow Polybag",                                  type:"Polybag",     franchise:"DC Comics",          wave:"Wave 5",figures:"Green Arrow",               img:"imgs/71342-dc-greenarrow.jpg"},
+/* ── WAVE 6 — STORY PACKS ─────────────────────────────────── */
+{num:"71242",name:"Ghostbusters (2016) Story Pack",                       type:"Story Pack",  franchise:"Ghostbusters 2016",  wave:"Wave 6",figures:"Abby Yates",               img:"imgs/71242-gb2016-team.jpg"},
 
-/* ── WAVE 7 ─────────────────────────────────────────────────── */
-{num:"71268",name:"Powerpuff Girls Fun Pack — Buttercup",                type:"Fun Pack",    franchise:"Powerpuff Girls",    wave:"Wave 7",figures:"Buttercup",img:"imgs/71268-ppg-buttercup.jpg"},
-{num:"71269",name:"Teen Titans Go! Fun Pack — Beast Boy",                type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 7",figures:"Beast Boy",img:"imgs/71269-ttg-beastboy.jpg"},
-{num:"71270",name:"The LEGO Ninjago Movie Fun Pack — Lloyd",             type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 7",figures:"Lloyd",img:"imgs/71270-ninjago-lloyd.jpg"},
+/* ── WAVE 7 — STORY PACK ──────────────────────────────────── */
+{num:"71253",name:"Fantastic Beasts Story Pack",                          type:"Story Pack",  franchise:"Fantastic Beasts",   wave:"Wave 7",figures:"Newt Scamander",            img:"imgs/71253-fb-storypack.jpg"},
 
-/* ── WAVE 8 ─────────────────────────────────────────────────── */
-{num:"71271",name:"The LEGO Ninjago Movie Fun Pack — Nya",               type:"Fun Pack",    franchise:"Ninjago",            wave:"Wave 8",figures:"Nya",img:"imgs/71271-ninjago-nya2.jpg"},
-{num:"71272",name:"The LEGO Ninjago Movie Team Pack",                    type:"Team Pack",   franchise:"Ninjago",            wave:"Wave 8",figures:"Lloyd, Cole",img:"imgs/71272-ninjago-team2.jpg"},
-{num:"71273",name:"Fantastic Beasts Fun Pack — Credence Barebone",       type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 8",figures:"Credence Barebone",img:"imgs/71273-fb-credence.jpg"},
+/* ── WAVE 6 — LEVEL / TEAM / FUN PACKS ───────────────────── */
+{num:"71244",name:"Sonic the Hedgehog Level Pack",                        type:"Level Pack",  franchise:"Sonic the Hedgehog", wave:"Wave 6",figures:"Sonic the Hedgehog",        img:"imgs/71244-at-sonic.jpg"},
+{num:"71245",name:"Adventure Time Level Pack",                            type:"Level Pack",  franchise:"Adventure Time",     wave:"Wave 6",figures:"Finn the Human",            img:"imgs/71245-at-levelpack.jpg"},
+{num:"71248",name:"Mission: Impossible Level Pack",                       type:"Level Pack",  franchise:"Mission: Impossible",wave:"Wave 6",figures:"Ethan Hunt",                img:"imgs/71248-mi-levelpack.jpg"},
+{num:"71246",name:"Adventure Time Team Pack",                             type:"Team Pack",   franchise:"Adventure Time",     wave:"Wave 6",figures:"Jake the Dog, Lumpy Space Princess",img:"imgs/71246-at-teampack.jpg"},
+{num:"71247",name:"Harry Potter Team Pack",                               type:"Team Pack",   franchise:"Harry Potter",       wave:"Wave 6",figures:"Harry Potter, Lord Voldemort",img:"imgs/71247-hp-harry.jpg"},
+{num:"71251",name:"The A-Team Fun Pack",                                  type:"Fun Pack",    franchise:"The A-Team",         wave:"Wave 6",figures:"B.A. Baracus",              img:"imgs/71251-ateam-babaracus.jpg"},
 
-/* ── WAVE 9 ─────────────────────────────────────────────────── */
-{num:"71274",name:"The LEGO Batman Movie Fun Pack — Excalibur Batman",   type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 9",figures:"Excalibur Batman",img:"imgs/71274-legobat-excalbat.jpg"},
-{num:"71275",name:"The LEGO Batman Movie Fun Pack — Red Hood",           type:"Fun Pack",    franchise:"DC Comics",          wave:"Wave 9",figures:"Red Hood",img:"imgs/71275-legobat-redhood.jpg"},
-{num:"71276",name:"Sonic the Hedgehog Fun Pack — Tails",                 type:"Fun Pack",    franchise:"Sonic the Hedgehog", wave:"Wave 9",figures:"Tails",img:"imgs/71276-sonic-tails.jpg"},
-{num:"71277",name:"Goonies Fun Pack — Sloth",                            type:"Fun Pack",    franchise:"The Goonies",        wave:"Wave 9",figures:"Sloth",img:"imgs/71277-goonies-sloth.jpg"},
-{num:"71278",name:"Fantastic Beasts Fun Pack — Queenie Goldstein",       type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 9",figures:"Queenie Goldstein",img:"imgs/71278-fb-queenie.jpg"},
+/* ── WAVE 7 — LEVEL / TEAM / FUN PACKS ───────────────────── */
+{num:"71256",name:"Gremlins Team Pack",                                   type:"Team Pack",   franchise:"Gremlins",           wave:"Wave 7",figures:"Gizmo, Stripe",            img:"imgs/71256-gremlins-stripe.jpg"},
+{num:"71257",name:"Tina Goldstein Fun Pack",                              type:"Fun Pack",    franchise:"Fantastic Beasts",   wave:"Wave 7",figures:"Tina Goldstein",            img:"imgs/71257-fb-tina-correct.jpg"},
+{num:"71258",name:"E.T. the Extra-Terrestrial Fun Pack",                  type:"Fun Pack",    franchise:"E.T.",               wave:"Wave 7",figures:"E.T.",                      img:"imgs/71258-et-fun.jpg"},
+
+/* ── WAVE 7.5 — STORY PACK + FUN PACKS ───────────────────── */
+{num:"71264",name:"The LEGO Batman Movie Story Pack",                     type:"Story Pack",  franchise:"The LEGO Batman Movie",wave:"Wave 7.5",figures:"Batgirl, Robin",        img:"imgs/71264-legobatman-story.jpg"},
+{num:"71285",name:"Marceline Fun Pack",                                   type:"Fun Pack",    franchise:"Adventure Time",     wave:"Wave 7.5",figures:"Marceline the Vampire Queen",img:"imgs/71285-at-marceline.jpg"},
+{num:"71286",name:"Michael Knight Fun Pack",                              type:"Fun Pack",    franchise:"Knight Rider",       wave:"Wave 7.5",figures:"Michael Knight",          img:"imgs/71286-kr-michaelknight.jpg"},
+{num:"71344",name:"Excalibur Batman Fun Pack",                            type:"Fun Pack",    franchise:"The LEGO Batman Movie",wave:"Wave 7.5",figures:"Excalibur Batman",       img:"imgs/71344-dc-excalbatman.jpg"},
+
+/* ── WAVE 8 — LEVEL / FUN PACKS ──────────────────────────── */
+{num:"71267",name:"The Goonies Level Pack",                               type:"Level Pack",  franchise:"The Goonies",        wave:"Wave 8",figures:"Sloth",                     img:"imgs/71267-goonies-level.jpg"},
+{num:"71266",name:"Chase McCain Fun Pack",                                type:"Fun Pack",    franchise:"LEGO City",          wave:"Wave 8",figures:"Chase McCain",              img:"imgs/71266-legocity-chase.jpg"},
+{num:"71348",name:"Hermione Granger Fun Pack",                            type:"Fun Pack",    franchise:"Harry Potter",       wave:"Wave 8",figures:"Hermione Granger",          img:"imgs/71348-hp-hermione.jpg"},
+
+/* ── WAVE 9 — TEAM / FUN PACKS ───────────────────────────── */
+{num:"71255",name:"Teen Titans Go! Team Pack",                            type:"Team Pack",   franchise:"Teen Titans Go!",    wave:"Wave 9",figures:"Beast Boy, Raven",          img:"imgs/71255-ttg-teampack.jpg"},
+{num:"71346",name:"The Powerpuff Girls Team Pack",                        type:"Team Pack",   franchise:"The Powerpuff Girls",wave:"Wave 9",figures:"Blossom, Bubbles",          img:"imgs/71346-ppg-teampack.jpg"},
+{num:"71287",name:"Starfire Fun Pack",                                    type:"Fun Pack",    franchise:"Teen Titans Go!",    wave:"Wave 9",figures:"Starfire",                  img:"imgs/71287-ttg-starfire.jpg"},
+{num:"71343",name:"Buttercup Fun Pack",                                   type:"Fun Pack",    franchise:"The Powerpuff Girls",wave:"Wave 9",figures:"Buttercup",                  img:"imgs/71343-ppg-buttercup.jpg"},
+{num:"71349",name:"Beetlejuice Fun Pack",                                  type:"Fun Pack",    franchise:"Beetlejuice",        wave:"Wave 9",figures:"Betelgeuse",                img:"imgs/71349-bj-betelgeuse.jpg"},
 ];
 
 /* ── FILTER STATE ─────────────────────────────────────────────────── */
@@ -809,8 +809,8 @@ function buildFilters(id, items, getColor, getLabel, setActive){
   });
 }
 
-const allTypes  = ["All", "Starter Pack", "Level Pack", "Team Pack", "Fun Pack"];
-const allWaves  = ["All", "Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","Wave 7","Wave 8","Wave 9"];
+const allTypes  = ["All", "Starter Pack", "Story Pack", "Level Pack", "Team Pack", "Fun Pack", "Polybag"];
+const allWaves  = ["All", "Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","Wave 7","Wave 7.5","Wave 8","Wave 9"];
 const allFranch = ["All", ...new Set(packs.map(p=>p.franchise))].sort((a,b)=>a==="All"?-1:a.localeCompare(b));
 
 buildFilters("typeFilters", allTypes,
@@ -944,7 +944,7 @@ function render(){
     out.appendChild(g);
   } else {
     /* Group by wave */
-    const waveOrder = ["Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","Wave 7","Wave 8","Wave 9"];
+    const waveOrder = ["Wave 1","Wave 2","Wave 3","Wave 4","Wave 5","Wave 6","Wave 7","Wave 7.5","Wave 8","Wave 9"];
     const byWave = {};
     filtered.forEach(p => { (byWave[p.wave]=byWave[p.wave]||[]).push(p); });
 
