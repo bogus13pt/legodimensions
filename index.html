@@ -548,6 +548,62 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
 .empty-icon { font-size: 3rem; margin-bottom: 14px; opacity: .2; }
 .empty p { font-family: 'Bangers', cursive; font-size: 22px; letter-spacing: 2px; }
 
+
+/* ── EXPORT / IMPORT ──────────────────────────────────────────── */
+.sync-bar {
+  position: relative;
+  z-index: 1;
+  max-width: 1320px;
+  margin: 0 auto 0;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.sync-lbl {
+  font-family: 'Oswald', sans-serif;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--ld-muted);
+  margin-right: 4px;
+}
+.sync-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--surface);
+  border: 1.5px solid rgba(255,215,0,0.25);
+  border-radius: 4px;
+  color: var(--ld-muted2);
+  cursor: pointer;
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  transition: all .15s;
+  white-space: nowrap;
+}
+.sync-btn:hover { border-color: var(--ld-yellow); color: var(--ld-yellow); }
+.sync-btn.export-btn:hover { border-color: var(--ld-cyan); color: var(--ld-cyan); }
+.sync-btn.import-btn:hover { border-color: var(--ld-green); color: var(--ld-green); }
+.sync-toast {
+  font-family: 'Oswald', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ld-green);
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.sync-toast.show { opacity: 1; }
+
 /* ── SCROLLBAR ────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -614,6 +670,15 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
       <button class="view-btn" id="listBtn" title="List" onclick="setView('list')">☰</button>
     </div>
   </div>
+</div>
+
+
+<div class="sync-bar">
+  <span class="sync-lbl">Collection Sync</span>
+  <button class="sync-btn export-btn" onclick="exportCollection()">↓ Export</button>
+  <button class="sync-btn import-btn" onclick="document.getElementById('importFile').click()">↑ Import</button>
+  <input type="file" id="importFile" accept=".json" style="display:none" onchange="importCollection(event)">
+  <span class="sync-toast" id="syncToast"></span>
 </div>
 
 <div id="output"></div>
@@ -988,6 +1053,54 @@ function setView(mode){
   document.getElementById("gridBtn").classList.toggle("active", mode==="grid");
   document.getElementById("listBtn").classList.toggle("active", mode==="list");
   render();
+}
+
+
+/* ── EXPORT / IMPORT ─────────────────────────────────────────────── */
+function exportCollection(){
+  const data = {
+    version: 1,
+    exported: new Date().toISOString(),
+    owned: [...owned]
+  };
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:"application/json"});
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href     = url;
+  a.download = "lego-dimensions-collection.json";
+  a.click();
+  URL.revokeObjectURL(url);
+  showToast("Collection exported!");
+}
+
+function importCollection(event){
+  const file = event.target.files[0];
+  if(!file) return;
+  const reader = new FileReader();
+  reader.onload = e => {
+    try {
+      const data = JSON.parse(e.target.result);
+      const keys = Array.isArray(data.owned) ? data.owned : [];
+      if(!keys.length){ showToast("No data found in file."); return; }
+      owned.clear();
+      keys.forEach(k => owned.add(k));
+      localStorage.setItem("ld_owned", JSON.stringify([...owned]));
+      render();
+      showToast(`Imported ${keys.length} owned items!`);
+    } catch(err){
+      showToast("Invalid file.");
+    }
+    // reset input so same file can be re-imported
+    event.target.value = "";
+  };
+  reader.readAsText(file);
+}
+
+function showToast(msg){
+  const t = document.getElementById("syncToast");
+  t.textContent = msg;
+  t.classList.add("show");
+  setTimeout(() => t.classList.remove("show"), 3000);
 }
 
 /* ── INIT ─────────────────────────────────────────────────────────── */
