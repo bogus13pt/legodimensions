@@ -604,6 +604,40 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
 }
 .sync-toast.show { opacity: 1; }
 
+
+/* ── LIMITED / EXCLUSIVE CARDS ───────────────────────────────── */
+.card.limited {
+  border-color: rgba(251,191,36,0.7) !important;
+  box-shadow: 0 0 0 1px rgba(251,191,36,0.25), 0 0 18px rgba(251,191,36,0.12);
+}
+.card.limited::before {
+  background: linear-gradient(90deg, transparent, #fbbf24, transparent) !important;
+  opacity: 1 !important;
+}
+.card.exclusive {
+  border-color: rgba(168,85,247,0.7) !important;
+  box-shadow: 0 0 0 1px rgba(168,85,247,0.25), 0 0 18px rgba(168,85,247,0.12);
+}
+.card.exclusive::before {
+  background: linear-gradient(90deg, transparent, #a855f7, transparent) !important;
+  opacity: 1 !important;
+}
+.limit-badge {
+  position: absolute;
+  bottom: 8px; right: 8px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 4;
+  white-space: nowrap;
+}
+.limit-badge.ltd  { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.4); }
+.limit-badge.excl { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.4); }
+
 /* ── SCROLLBAR ────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
@@ -808,8 +842,8 @@ const packs = [
 
 
 /* ── WAVE 5 — POLYBAGS ────────────────────────────────────── */
-{num:"71340",name:"Supergirl Polybag",                                    type:"Polybag",     franchise:"DC Comics",          wave:"Wave 5",figures:"Supergirl",                 img:"imgs/71340-dc-supergirl.jpg"},
-{num:"71342",name:"Green Arrow Polybag",                                  type:"Polybag",     franchise:"DC Comics",          wave:"Wave 5",figures:"Green Arrow",               img:"imgs/71342-dc-greenarrow.jpg"},
+{num:"71340",name:"Supergirl Polybag",limited:"EXCLUSIVE · PS4 Starter Pack Bundle",                                    type:"Polybag",     franchise:"DC Comics",          wave:"Wave 5",figures:"Supergirl",                 img:"imgs/71340-dc-supergirl.jpg"},
+{num:"71342",name:"Green Arrow Polybag",limited:"LIMITED EDITION · E3 2016 / GameStop Black Friday",                                  type:"Polybag",     franchise:"DC Comics",          wave:"Wave 5",figures:"Green Arrow",               img:"imgs/71342-dc-greenarrow.jpg"},
 /* ── WAVE 6 — STORY PACKS ─────────────────────────────────── */
 {num:"71242",name:"Ghostbusters (2016) Story Pack",                       type:"Story Pack",  franchise:"Ghostbusters 2016",  wave:"Wave 6",figures:"Abby Yates",               img:"imgs/71242-gb2016-team.jpg"},
 
@@ -969,6 +1003,22 @@ function makeCard(data, delay){
   card.appendChild(body);
 
   /* Hover glow */
+  /* Limited / Exclusive highlight */
+  if(data.limited){
+    const isExcl = data.limited.startsWith('EXCLUSIVE');
+    card.classList.add(isExcl ? 'exclusive' : 'limited');
+    const lb = document.createElement('div');
+    lb.className = 'limit-badge ' + (isExcl ? 'excl' : 'ltd');
+    lb.textContent = isExcl ? '★ Exclusive' : '★ Limited Edition';
+    lb.title = data.limited;
+    imgA.appendChild(lb);
+    // Also add info line in card body
+    const limitInfo = document.createElement('div');
+    limitInfo.style.cssText = 'font-size:9px;color:' + (isExcl?'#a855f7':'#fbbf24') + ';margin-top:5px;font-family:Oswald,sans-serif;letter-spacing:1px;text-transform:uppercase;line-height:1.4;';
+    limitInfo.textContent = data.limited;
+    body.appendChild(limitInfo);
+  }
+
   card.addEventListener("mouseenter", () => {
     card.style.borderColor = fc+"55";
     card.style.boxShadow   = `0 14px 36px ${fc}20, 0 2px 8px rgba(0,0,0,0.5)`;
