@@ -463,13 +463,16 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
   bottom: 8px; left: 8px;
   font-family: 'Oswald', sans-serif;
   font-size: 8px;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 1px;
   text-transform: uppercase;
-  padding: 2px 7px;
-  border-radius: 2px;
+  padding: 3px 8px;
+  border-radius: 3px;
   z-index: 4;
   white-space: nowrap;
+  background: rgba(0,0,0,0.75) !important;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.6);
 }
 
 /* owned button */
@@ -635,8 +638,8 @@ input[type="text"]::placeholder { color: var(--ld-muted); }
   z-index: 4;
   white-space: nowrap;
 }
-.limit-badge.ltd  { background: rgba(251,191,36,0.15); color: #fbbf24; border: 1px solid rgba(251,191,36,0.4); }
-.limit-badge.excl { background: rgba(168,85,247,0.15); color: #a855f7; border: 1px solid rgba(168,85,247,0.4); }
+.limit-badge.ltd  { background: rgba(0,0,0,0.82); color: #fbbf24; border: 1px solid rgba(251,191,36,0.7); box-shadow: 0 2px 6px rgba(0,0,0,0.6); }
+.limit-badge.excl { background: rgba(0,0,0,0.82); color: #a855f7; border: 1px solid rgba(168,85,247,0.7); box-shadow: 0 2px 6px rgba(0,0,0,0.6); }
 
 /* ── SCROLLBAR ────────────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 5px; }
